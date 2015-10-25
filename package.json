@@ -6,9 +6,17 @@
     "start": "supervisor app.js"
   },
   "dependencies": {
-    "express": "3.5.0",
-    "jade": "*",
+    "body-parser": "^1.14.1",
+    "errorhandler": "^1.4.2",
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "jade": "^1.11.0",
+    "method-override": "^2.3.5",
     "mocha": "^2.3.3",
-    "nano": "^6.1.5"
+    "morgan": "^1.6.1",
+    "multer": "^0.1.8",
+    "nano": "^6.1.5",
+    "request": "^2.65.0",
+    "serve-favicon": "^2.3.0"
   }
 }
