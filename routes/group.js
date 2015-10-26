@@ -1,6 +1,5 @@
 "use strict";
 
-// let base = require("../models/base")
 let express = require('express');
 let nano = require('../models/db');
 let router = express.Router();
@@ -15,14 +14,22 @@ router.param("group_id", function(req, res, next, group_id) {
   console.log(`Group id is $(group_id)`);
   // Fetch group record with id = group_id
   let group_db = nano.db.use('groups');
-  group_db.get(group_id, { revs_info: true }, function(err, body) {
-    if (err) {
-      req.error = utils.handle_couch_error(err);
-    } else {
-      req.group = body;
-    }
-    return next();
-  });
+  group_db.get(group_id, { rev_info: true})
+    .then(function(group) {
+      req.group = group;
+      return next();
+    }).catch(function(e) {
+      req.error = utils.handle_couch_error(e);
+      return next();
+    });
+  // group_db.get(group_id, { revs_info: true }, function(err, body) {
+  //   if (err) {
+  //     req.error = utils.handle_couch_error(err);
+  //   } else {
+  //     req.group = body;
+  //   }
+  //   return next();
+  // });
 });
 
 /**

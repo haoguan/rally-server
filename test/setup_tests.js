@@ -6,7 +6,7 @@ let setup = require("../routes/setup")
 let assert = require('assert');
 
 // Test dbs
-let dbs = ["unit", "testing", "rocks"];
+let dbs = ["unit"];
 
 /*
  * tables
@@ -16,17 +16,23 @@ suite('setup', function() {
   // Delete test databases
   teardown(function() {
     for (let db_name of dbs) {
-      nano.db.destroy(db_name, function(err, body){
-        if (err) throw err;
-      });      
+      nano.request({
+        db: db_name,
+        method: 'get'
+      }).then(function(body) {
+        return nano.db.destroy(db_name);
+      }).catch(function(e) {
+        console.log("cannot delete db that doesn't exist");
+      });  
     }
   });
 
   suite("#reset_dbs()", function() {
     test("should return json with status code and message", function() {
-      setup.reset_dbs(dbs, function(err, resp) {
-        if (err) throw err;
-      });
+      assert.deepEqual({
+        status: 200,
+        message: "Reset successful"
+      }, setup.reset_dbs(dbs));
     });
   });
 });

@@ -6,6 +6,7 @@
     "start": "supervisor app.js"
   },
   "dependencies": {
+    "bluebird": "^2.10.2",
     "body-parser": "^1.14.1",
     "errorhandler": "^1.4.2",
     "express": "^4.13.3",
@@ -16,6 +17,7 @@
     "morgan": "^1.6.1",
     "multer": "^0.1.8",
     "nano": "^6.1.5",
+    "nano-blue": "^0.3.0",
     "request": "^2.65.0",
     "serve-favicon": "^2.3.0"
   }
