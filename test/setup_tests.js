@@ -1,7 +1,7 @@
 "use strict";
 
 let utils = require("../models/utils");
-let nano = require('../models/db');
+let nano = require('../models/nano');
 let setup = require("../routes/setup")
 let assert = require('assert');
 
